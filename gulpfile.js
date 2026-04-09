@@ -1,71 +1,71 @@
 'use strict';
 
-/* Плагины */
-const gulp = require('gulp');
-const gulpLoadPlugins = require('gulp-load-plugins');
-const plugins = gulpLoadPlugins();
+const { src, dest, parallel, series, watch } = require('gulp');
+const gulpSass = require('gulp-sass');
+const sassCompiler = gulpSass(require('sass'));
 const browserSync = require('browser-sync').create();
-const runSequence = require('run-sequence');
-const del = require('del');
+const connectPhp = require('gulp-connect-php');
+const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
+const gulpif = require('gulp-if');
+const include = require('gulp-include');
+const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
+const rev = require('gulp-rev');
+const revReplace = require('gulp-rev-replace');
+const nunjucksRender = require('gulp-nunjucks-render');
+const rename = require('gulp-rename');
+const webp = require('gulp-webp');
+const debug = require('gulp-debug');
+const htmlmin = require('gulp-htmlmin');
 const combine = require('stream-combiner2').obj;
+const del = require('del');
 const os = require('os');
 const fs = require('fs');
-const htmlmin = require('gulp-htmlmin');
 
 /* Переменные окружения */
-const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV != 'production';
-
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV !== 'production';
 
 /* Конфиг */
 var CONFIG = {
-	output: 'public', /* Корневая папка сайта */
-	input: '.distr/', /* Корневая папка дистрибутива */
-	pages: '.distr/pages', /* Структура сайта в дистрибутиве */
-	templates: '.distr/templates', /* Шаблоны сайта в дистрибутиве */
-	blocks: '.distr/blocks', /* Блоки сайта в дистрибутиве */
-	proxyPortPhp: 8001, /* Прокси-порт для PHP-сервера */
-	proxyPortBs: 8910, /* Прокси-порт для browserSync */
-	useAutoprefixer: true, /* Autoprefixer по умолчанию выключен */
-	reload: true, /* Перезагрузка браузера по умолчанию влючена */
-	phpPath: '' /* Путь к локально установленному PHP (для сборки под Windows), задавать только в gulpconfig.json - https://pastebin.com/raw/gvvntxpv */
+	output: 'public',
+	input: '.distr/',
+	pages: '.distr/pages',
+	templates: '.distr/templates',
+	blocks: '.distr/blocks',
+	proxyPortPhp: 8001,
+	proxyPortBs: 8910,
+	useAutoprefixer: true,
+	reload: true,
+	phpPath: ''
 };
 
-/* Если есть gulpconfig.json, берём параметры из него */
 function loadConfig() {
 	if (fs.existsSync(__dirname + '/./gulpconfig.json')) {
-		let user_config = {};
-
-		user_config = require('./gulpconfig.json');
+		const user_config = require('./gulpconfig.json');
 		CONFIG = Object.assign({}, CONFIG, user_config);
 		return CONFIG;
 	}
 }
 loadConfig();
 
-
-/* Задачи */
-
-/* Задача для поднятия PHP-сервера */
-gulp.task('connect', function (callback) {
+function connectPhpSrv(done) {
 	console.log('* Запуск gulp-connect-php *');
 
-	let serverConfig = {
+	const serverConfig = {
 		base: CONFIG.output,
 		port: CONFIG.proxyPortPhp
 	};
 
-	if ( os.type() == 'Windows_NT' ) {
-		/* Для запуска под Windows должен быть установлен локальный PHP и путь к нему указан в gulpconfig.json */
+	if (os.type() === 'Windows_NT') {
 		serverConfig.bin = CONFIG.phpPath + 'php.exe';
 		serverConfig.ini = CONFIG.phpPath + 'php.ini';
 	}
 
-	plugins.connectPhp.server(serverConfig, callback);
-});
+	connectPhp.server(serverConfig, done);
+}
 
-
-/* Задача для запуска browserSync, используя в качестве прокси PHP-сервер на порту 8001 */
-gulp.task('browserSync', ['connect'], function() {
+function browserSyncInit(done) {
 	console.log('* Запуск browserSync *');
 
 	browserSync.init({
@@ -75,236 +75,183 @@ gulp.task('browserSync', ['connect'], function() {
 		injectChanges: true,
 		port: CONFIG.proxyPortBs
 	});
-});
+	done();
+}
 
-
-/* Задача для очистки конечной сборки (удаляется всё в CONFIG.output) */
-gulp.task('clean', function () {
+function clean() {
 	console.log('* Удаление предыдущей сборки *');
 
-	return del(['**', '../manifest', '!' + CONFIG.input + '**'], {force: true, cwd: CONFIG.output});
-});
+	return del(['**', '../manifest', '!' + CONFIG.input + '**'], { force: true, cwd: CONFIG.output });
+}
 
-
-/* Задача для картинок */
-gulp.task('images', function () {
+function images() {
 	console.log('* Копирование картинок *');
 
-	return gulp.src(['**/img/**/*.*', '!{~**/**,**/~**}/img/**/*.*', '!**/img/**/{~*.*,*.ps}'], {cwd: CONFIG.blocks, dot: true})
-	.pipe( plugins.rename(function (path) {
-		let slash = '/';
-		if ( os.type() == 'Windows_NT' ) slash = '\\';
-		path.dirname = path.dirname.replace(slash + 'img', ''); /* Замена пути к картинкам для конечного пути: block/img/*.* -> img/block/*.* */
-	}) )
-	.pipe( gulp.dest(CONFIG.output + '/img/') )
-	;
-});
+	return src(['**/img/**/*.*', '!{~**/**,**/~**}/img/**/*.*', '!**/img/**/{~*.*,*.ps}'], { cwd: CONFIG.blocks, dot: true })
+		.pipe(rename(function (path) {
+			let slash = '/';
+			if (os.type() === 'Windows_NT') slash = '\\';
+			path.dirname = path.dirname.replace(slash + 'img', '');
+		}))
+		.pipe(dest(CONFIG.output + '/img/'));
+}
 
-
-/* Задача для конвертирования графики в формат webp */
-gulp.task('webp', ['images'], function () {
+function webpTask() {
 	console.log('* Конвертация в webp *');
 
-	return gulp.src('**/**', {cwd: CONFIG.output + '/img/'})
-	.pipe( plugins.webp() )
-	.pipe( gulp.dest(CONFIG.output + '/img/') )
-	;
-});
+	return src('**/**', { cwd: CONFIG.output + '/img/' })
+		.pipe(webp())
+		.pipe(dest(CONFIG.output + '/img/'));
+}
 
-
-/* Задача для JS */
-gulp.task('scripts', function () {
+function scripts() {
 	console.log('* Копирование скриптов *');
 
-	return gulp.src(['**/*.js', '!{~**/**,**/~**}/*.js', '!**/~*.js'], {cwd: CONFIG.pages, dot: true})
-	.pipe( plugins.plumber() )
-	.pipe( plugins.include({
-		includePaths: [CONFIG.blocks]
-	}) )
-	.pipe( plugins.babel({
-		presets: ['@babel/env']
-	}) )
-	.pipe( plugins.if( !isDevelopment, plugins.rev() ) )
-	.pipe( gulp.dest(CONFIG.output) )
-	.pipe( plugins.if( !isDevelopment, combine( plugins.rev.manifest('js.json'), gulp.dest('manifest'), plugins.debug({title: 'manifest -> js.json'}) ) ) )
-	;
-});
+	return src(['**/*.js', '!{~**/**,**/~**}/*.js', '!**/~*.js'], { cwd: CONFIG.pages, dot: true })
+		.pipe(plumber())
+		.pipe(include({
+			includePaths: [CONFIG.blocks]
+		}))
+		.pipe(babel({
+			presets: ['@babel/preset-env']
+		}))
+		.pipe(gulpif(!isDevelopment, rev()))
+		.pipe(dest(CONFIG.output))
+		.pipe(gulpif(!isDevelopment, combine(rev.manifest('js.json'), dest('manifest'), debug({ title: 'manifest -> js.json' }))));
+}
 
-
-/* Задача для CSS */
-gulp.task('styles', function () {
+function styles() {
 	console.log('* Копирование стилей *');
 
-	return gulp.src(['**/*.scss', '**/**/*.scss', '!{~**/**,**/~**}/*.scss', '!**/~*.scss'], {cwd: CONFIG.pages, dot: true})
-	.pipe( plugins.if( isDevelopment, plugins.sourcemaps.init() ) )
-	.pipe( plugins.plumber() )
-	.pipe( plugins.sass({
-		includePaths: [CONFIG.blocks],
-		indentType: 'tab',
-		indentWidth: 1,
-		outputStyle: 'compact',
-		outputStyle: !isDevelopment ? 'compressed' : 'expanded'
-	}) )
-	.pipe( plugins.if( CONFIG.useAutoprefixer, plugins.autoprefixer({
-		browsers: ['last 2 versions']
-	}) ) )
-	.pipe( plugins.if( isDevelopment, plugins.sourcemaps.write() ) )
-	.pipe( plugins.if( !isDevelopment, plugins.rev() ) )
-	.pipe( gulp.dest(CONFIG.output) )
-	.pipe( plugins.if( !isDevelopment, combine( plugins.rev.manifest('css.json'), gulp.dest('manifest'), plugins.debug({title: 'manifest -> css.json'}) ) ) )
-	;
-});
+	return src(['**/*.scss', '**/**/*.scss', '!{~**/**,**/~**}/*.scss', '!**/~*.scss'], { cwd: CONFIG.pages, dot: true })
+		.pipe(gulpif(isDevelopment, sourcemaps.init()))
+		.pipe(plumber())
+		.pipe(sassCompiler({
+			includePaths: [CONFIG.blocks],
+			indentType: 'tab',
+			indentWidth: 1,
+			outputStyle: isDevelopment ? 'expanded' : 'compressed',
+			/* До миграции на @use и modern API (gulp-sass) — не засоряем лог */
+			silenceDeprecations: ['import', 'legacy-js-api']
+		}).on('error', sassCompiler.logError))
+		.pipe(gulpif(CONFIG.useAutoprefixer, autoprefixer({
+			overrideBrowserslist: ['last 2 versions']
+		})))
+		.pipe(gulpif(isDevelopment, sourcemaps.write()))
+		.pipe(gulpif(!isDevelopment, rev()))
+		.pipe(dest(CONFIG.output))
+		.pipe(gulpif(!isDevelopment, combine(rev.manifest('css.json'), dest('manifest'), debug({ title: 'manifest -> css.json' }))));
+}
 
-
-/* Задача для рендеринга шаблонов Nunjucks */
-gulp.task('nunjucks', ['styles', 'scripts'], function() {
+function nunjucks() {
 	console.log('* Рендеринг шаблонов (Nunjucks) *');
 
-	return gulp.src(['**/*.{php,njk}', '!{~**/**,**/~**}/*.{php,njk}', '!**/~*.{php,njk}'], {cwd: CONFIG.pages, dot: true})
-	.pipe( plugins.plumber() )
-	.pipe( plugins.nunjucksRender({
-		path: [CONFIG.templates, CONFIG.blocks],
-		inheritExtension: true,
-		throwOnUndefined: true
-	}) )
-	.pipe( gulp.dest(CONFIG.output) )
-	;
-});
+	return src(['**/*.{php,njk}', '!{~**/**,**/~**}/*.{php,njk}', '!**/~*.{php,njk}'], { cwd: CONFIG.pages, dot: true })
+		.pipe(plumber())
+		.pipe(nunjucksRender({
+			path: [CONFIG.templates, CONFIG.blocks],
+			inheritExtension: true,
+			throwOnUndefined: true
+		}))
+		.pipe(dest(CONFIG.output));
+}
 
-
-/* Задача для минификации кода */
-gulp.task('minify', function() {
+function minify() {
 	console.log('* Минификация *');
 
-	return gulp.src(['**/index.php', '!{~**/**,**/~**}/*.php', '!**/~*.php'], {cwd: CONFIG.output})
-	.pipe( htmlmin({
-		collapseWhitespace: true,
-		preserveLineBreaks: true,
-		removeComments: true,
-		minifyCSS: true,
-		removeScriptTypeAttributes: true,
-		removeStyleLinkTypeAttributes: true
-	}) )
-	.pipe( gulp.dest(CONFIG.output) );
-});
+	return src(['**/index.php', '!{~**/**,**/~**}/*.php', '!**/~*.php'], { cwd: CONFIG.output })
+		.pipe(htmlmin({
+			collapseWhitespace: true,
+			preserveLineBreaks: true,
+			removeComments: true,
+			minifyCSS: true,
+			removeScriptTypeAttributes: true,
+			removeStyleLinkTypeAttributes: true
+		}))
+		.pipe(dest(CONFIG.output));
+}
 
-
-/* Задача для копирования остальных файлов */
-gulp.task('pages', ['nunjucks'], function() {
+function pages() {
 	console.log('* Копирование остальных файлов *');
 
-	return gulp.src(['**/**', '!**/*.{php,scss,js}', '!{~**/**,**/~**}', '!**/~*.*'], {cwd: CONFIG.pages, dot: true})
-	.pipe( gulp.dest(CONFIG.output) )
-	;
-});
+	return src(['**/**', '!**/*.{php,scss,js}', '!{~**/**,**/~**}', '!**/~*.*'], { cwd: CONFIG.pages, dot: true })
+		.pipe(dest(CONFIG.output));
+}
 
-
-/* Задача для замены имён файлов в HTML и CSS */
-gulp.task('revreplace', ['nunjucks'], function(callback) {
-	if ( isDevelopment ) return callback;
+function revreplace() {
+	if (isDevelopment) {
+		return Promise.resolve();
+	}
 
 	console.log('* Замена имён файлов *');
 
-	let
-	manifestCss = gulp.src('manifest/css.json'),
-	manifestImages = gulp.src('manifest/images.json'),
-	// manifestWebp = gulp.src('manifest/images.json'),
-	manifestJs = gulp.src('manifest/js.json')
-	;
+	const manifestCss = src('manifest/css.json', { allowEmpty: true });
+	const manifestImages = src('manifest/images.json', { allowEmpty: true });
+	const manifestJs = src('manifest/js.json', { allowEmpty: true });
 
-	function renameWebp(filename) {
-		return filename.replace(/\.(jpe?g|png|gif)$/i, '.webp');
+	return src(['**/*.php', '**/*.css'], { cwd: CONFIG.output })
+		.pipe(revReplace({
+			replaceInExtensions: ['.php', '.css'],
+			manifest: manifestCss
+		}))
+		.pipe(revReplace({
+			replaceInExtensions: ['.php', '.css'],
+			manifest: manifestImages
+		}))
+		.pipe(revReplace({
+			replaceInExtensions: ['.php'],
+			manifest: manifestJs
+		}))
+		.pipe(debug({ title: 'revReplace + manifest' }))
+		.pipe(dest(CONFIG.output));
+}
+
+function watchFiles(done) {
+	watch('**/img/*.{jpg,png,gif,svg}', { cwd: CONFIG.blocks }, series(images));
+
+	watch('**/*.scss', { cwd: CONFIG.input }, styles);
+
+	watch('**/*.js', { cwd: CONFIG.input }, scripts);
+
+	watch('**/*.{php,njk}', { cwd: CONFIG.input }, series(nunjucks, revreplace));
+
+	watch('**/*.*', { cwd: CONFIG.pages }, pages);
+
+	if (CONFIG.reload) {
+		watch('**/*.*', { cwd: CONFIG.input }).on('change', browserSync.reload);
 	}
 
-	return gulp.src(['**/*.php', '**/*.css'], {cwd: CONFIG.output})
-	.pipe( plugins.revReplace({
-		replaceInExtensions: ['.php', '.css'],
-		manifest: manifestCss
-	}) )
-	.pipe( plugins.revReplace({
-		replaceInExtensions: ['.php', '.css'],
-		manifest: manifestImages
-	}) )
-	/*.pipe( plugins.revReplace({
-		replaceInExtensions: ['.php', '.css'],
-		manifest: manifestWebp,
-		modifyUnreved: renameWebp,
-		modifyReved: renameWebp
-	}) )*/
-	.pipe( plugins.revReplace({
-		replaceInExtensions: ['.php'],
-		manifest: manifestJs
-	}) )
-	.pipe( plugins.debug({title: 'revReplace + manifest'}) )
-	.pipe( gulp.dest(CONFIG.output) )
-	;
-});
+	done();
+}
 
+const buildDevelopment = series(
+	images,
+	parallel(styles, scripts),
+	nunjucks,
+	pages
+);
 
-/* Задача для слежения за измениями в исходных файлах */
-gulp.task('watch', function() {
-	/* Копирование, когда изменились картинки  */
-	// gulp.watch('**/img/*.{jpg,png,gif,svg}', {cwd: CONFIG.blocks}, ['images', 'webp']);
-	gulp.watch('**/img/*.{jpg,png,gif,svg}', {cwd: CONFIG.blocks}, ['images']);
+const buildProduction = series(
+	clean,
+	images,
+	parallel(styles, scripts),
+	nunjucks,
+	pages,
+	revreplace,
+	minify
+);
 
-	/* Пересборка CSS, когда изменились стили  */
-	gulp.watch('**/*.scss', {cwd: CONFIG.input}, ['styles']);
+exports.build = isDevelopment ? buildDevelopment : buildProduction;
 
-	/* Пересборка JS, когда изменились скрипты  */
-	gulp.watch('**/*.js', {cwd: CONFIG.input}, ['scripts']);
+exports.webp = series(images, webpTask);
 
-	/* Пересборка HTML, когда изменились страницы, шаблоны или блоки */
-	gulp.watch('**/*.{php,njk}', {cwd: CONFIG.input}, ['nunjucks', 'revreplace']);
+const serveAndWatch = series(connectPhpSrv, browserSyncInit, watchFiles);
 
-	/* Обработка остальных файлов */
-	gulp.watch('**/*.*', {cwd: CONFIG.pages}, ['pages']);
+exports.default = series(exports.build, serveAndWatch);
 
-	if ( CONFIG.reload ) {
-		/* Перезагрузка браузера, когда что-то изменилось в сборке */
-		gulp.watch('**/*.*', {cwd: CONFIG.input}).on('change', browserSync.reload);
-	}
-});
+exports.nosync = series(exports.build, watchFiles);
 
-
-/* Задача для конечной сборки (для prod) */
-gulp.task('build', function(){
-	runSequence.options.ignoreUndefinedTasks = true;
-
-	return runSequence(
-		!isDevelopment ? 'clean' : null,
-		'images',
-		// 'webp',
-		['styles', 'scripts', 'pages'],
-		'nunjucks',
-		!isDevelopment ? 'revreplace' : null,
-		!isDevelopment ? 'minify' : null
-		);
-});
-
-
-/* Задача по умолчанию (для dev) */
-gulp.task('default', function(){
-	return runSequence(
-		'build',
-		'browserSync',
-		'watch'
-		);
-});
-
-
-/* Задача для сборки без поднятия сервера */
-gulp.task('nosync', function(){
-	return runSequence(
-		'build',
-		'watch'
-		);
-});
-
-/* Задача для сборки без перезагрузки */
-gulp.task('noreload', function(){
+exports.noreload = function noreload(done) {
 	CONFIG.reload = false;
-
-	return runSequence(
-		'default'
-		);
-});
+	series(exports.build, serveAndWatch)(done);
+};

@@ -1,0 +1,32 @@
+---
+description: Nunjucks templating and static build conventions; consult official Nunjucks API when changing templates or data flow.
+alwaysApply: true
+---
+
+# Nunjucks and build pipeline
+
+When editing templates, macros, includes, filters, async behavior, or how context is passed from Gulp to HTML, **treat the official Nunjucks API as the source of truth**:
+
+https://mozilla.github.io/nunjucks/api.html
+
+## Apply this rule when
+
+- Writing or refactoring `*.html` / Nunjucks syntax under `.distr/` (pages, templates, blocks).
+- Adding filters, globals, extensions, or `env` options that must match Nunjucks behavior.
+- Debugging inheritance (`extends` / `block`), `import` / `from`, `macro`, scoping, or auto-escaping.
+
+## Project context (do not contradict without reason)
+
+- **Build**: Gulp 4; Nunjucks via `gulp-nunjucks-render`; sources live under `.distr/` (`pages`, `templates`, `blocks`); output is `public/`.
+- **Styles**: SCSS assembled from blocks; follow existing BEM/block structure in `.distr/blocks/`.
+- **Dev**: BrowserSync proxies PHP (`gulp-connect-php`); prefer matching existing Gulp tasks and paths in `gulpfile.js`.
+
+Prefer solutions that match Nunjucks documented semantics over guessing Jinja2-only or other-templating quirks unless the project explicitly relies on a documented difference.
+
+## Assistant expectations
+
+- **Node**: `>= 18`. Before changing the build, read `gulpfile.js` and optional `gulpconfig.json`.
+- **Edits**: Prefer minimal, consistent changes; reuse blocks and patterns under `.distr/`.
+- **Stack**: Do not add front-end frameworks unless explicitly requested (Gulp + Nunjucks + SCSS stack).
+- **Markup**: Preserve semantic HTML and heading hierarchy where the site already establishes patterns.
+- **Production**: `npm run build` sets `NODE_ENV=production` (rev filenames, HTML minification, etc., per gulp tasks).
