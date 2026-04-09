@@ -4,3 +4,5 @@ manifest/
 package-lock.json
 gulpconfig.json
 .idea
+.vscode
+.env
