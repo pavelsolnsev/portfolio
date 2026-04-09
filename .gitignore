@@ -1,4 +1,5 @@
 public/
+.dev/
 node_modules
 manifest/
 gulpconfig.json

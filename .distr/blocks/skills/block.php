@@ -1,5 +1,5 @@
 {% from './data.njk' import data as skills %}
-<section data-key="skills" class="loving-section skills">
+<section id="skills" data-key="skills" class="loving-section skills">
 	<h2 class="skills__title loving-title _h2"><span class="loving-title__inside"><?= $skills__title?></span></h2>
 	{% for item in skills %}
 	<div class="skills__item _{{item.tag | safe}}"> 
@@ -30,12 +30,6 @@
 				<li class="skills__li"><?= $skills__li_6?></li>
 				<li class="skills__li"><?= $skills__li_7?></li>
 				<li class="skills__li"><?= $skills__li_8?></li>
-				<li class="skills__li"><?= $skills__li_9?></li>
-				<li class="skills__li"><?= $skills__li_10?></li>
-				<li class="skills__li"><?= $skills__li_11?></li>
-				<li class="skills__li"><?= $skills__li_12?></li>
-				<li class="skills__li"><?= $skills__li_13?></li>
-				<li class="skills__li"><?= $skills__li_14?></li>
 			</ul>
 		</div>
 	</div>

@@ -1,16 +1,16 @@
 {
-  "name": "project-base",
+  "name": "pavelsolntsev-portfolio",
   "version": "1.0.0",
-  "description": "project-base",
+  "description": "Персональный сайт-портфолио (Gulp, Nunjucks, SCSS, PHP)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "node node_modules/gulp/bin/gulp.js",
     "build": "cross-env NODE_ENV=production gulp build"
   },
-  "author": "aradul@synergy.ru",
+  "author": "Pavel Solntsev",
   "license": "MIT",
-  "homepage": "#",
+  "homepage": "https://pavelsolntsev.ru/",
   "engines": {
     "node": ">=18.0.0"
   },

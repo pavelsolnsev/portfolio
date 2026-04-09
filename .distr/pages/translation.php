@@ -1,6 +1,10 @@
 <?php
 
 $title = 'Солнцев Павел — фронтенд разработчик';
+$meta_description = 'Фронтенд-разработчик Солнцев Павел: адаптивная вёрстка, JavaScript, Vue/Nuxt, коммерческий опыт.';
+$og_description = 'Фронтенд-разработка, HTML-вёрстка, JavaScript, Vue. Портфолио и контакты.';
+$portfolio_img_alt_prefix = 'Скриншот проекта: ';
+$popup_diplom_alt = 'Диплом МАИ — информатика и вычислительная техника';
 
 $loving_title = 'Солнцев Павел';
 
@@ -9,6 +13,9 @@ $menu_link_2 = 'Навыки';
 $menu_link_3 = 'Портфолио';
 
 $about__item = 'Москва (юго-восток)';
+
+$about_max_url = 'https://max.ru/u/f9LHodD0cOJ7dSO6bWIUGvsk_k9Y0mUlFIiZ5IVOAq3RR036t6j-CympLyk';
+$about_max_title = 'Написать в MAX';
 
 $education__title = 'Образование';
 
@@ -39,6 +46,18 @@ $skills__text_5 = 'Легко разбираю макеты в .psd, Zeplin ил
 Есть хороший вкус.';
 $skills__text_6 = 'На среднем уровне знаю PHP. Опыт работы в команде с backend-разработчиками и дизайнерами. Уверенная работа через git';
 
+$skills__name = 'Ещё';
+$skills__li_1 = 'Code review и внимание к деталям в вёрстке';
+$skills__li_2 = 'Работа по макетам Figma, Zeplin, Photoshop';
+$skills__li_3 = 'Оценка сроков и декомпозиция задач';
+$skills__li_4 = 'Взаимодействие с backend, дизайнерами, менеджерами';
+$skills__li_5 = 'Git: ветки, merge, типовой workflow в команде';
+$skills__li_6 = 'Сборка фронта (Gulp, базово Webpack/Vite в проектах)';
+$skills__li_7 = 'Документация и передача вёрстки в разработку';
+$skills__li_8 = 'Английский для чтения документации и переписки';
+
+$footer_name = 'Павел Солнцев';
+
 $title_inside = 'Портфолио';
 
 $portfolio__name_1 = 'Работы в компании SYNERGY (LANDING)';
@@ -60,27 +79,43 @@ switch ($lang) {
 
         $about__item = 'Moscow (southeast)';
 
+        $about_max_title = 'Message on MAX';
+
         $education__title = 'Education';
 
         $education__dt_1 = 'Moscow Aviation Institute (MAI)';
-        $education__dt_2 = 'Work experience more than 5 years';
+        $education__dt_2 = 'Work experience more than 6 years';
 
         $education__dd_1 = 'Computer science and computing technique';
-        $education__dd_2 = 'Web District: Freelancer Code';
+        $education__dd_2 = 'Web layout course: Freelancer Code (WayUp)';
         $education__dd_3 = 'Web development';
         $education__dd_4 = 'I have experience in a team with Backend developers, <br> managers, customers, designers';
         
         $skills__title = 'Skills';
 
-        $skills__text_1 = 'I turn it out very quickly, literally on fly. I ponder the blocks instantly in the time of writing code. With IDE plane, like Emmet, this happens even faster. I immediately lay the SEO attributes, forming a semantic code.';
-        $skills__text_2 = 'Like a DOM structure, I also write CSS-sabotage instantly, again using EMMET to accelerate the process. I use the Mobile-First approach to reduce code and a more semantic structure. Preprocessors help save time and format the components of the project. Everywhere wherever possible, I use SVG, inserting it into the CSS code. I have a good imagination, which helps to create a variety of animations. I freely use fllexes and grids. I can scale a project from the smallest smartphones to 4K monitors.';
-        $skills__text_3 = 'I know the basics of JavaScript: variables, data types, conditional operators, cycles, functions and objects. I work with the document object model (DOM): search for elements, changing their styles and contents, adding and removing elements. I can work with an asynchronous code: understanding the concept of callback function, the use of Promise and Async/Await. Experience with libraries and frameworks, such as jquery, vue. The ability to work with the network: sending and receiving data through HTTP checks (for example, using AJAX), working with REST APIs. Experience with GIT, the ability to use the command line.';
-        $skills__text_4 = 'I can create components and connect them among themselves. I use directives, templates and specimens Vue.I control the data to the application, including using the linking of data, the calculated properties and interact with the server using Axios or Vue-ReSource.I create and process forms. I use the Vue router to control the transitions between the pages of the application.';
-        $skills__text_5 = 'I easily disassemble the layouts in .psd, Zeplin or figma. I can draw functional
-        Prototypes and & nbsp; even interfaces, good knowledge in & nbsp; areas of the UI/UX region, the ability to predict
-        and & nbsp; feel a potential visitor.I can draw a banner instead of a sick designer.
-        There is good taste.';
+        $skills__text_1 = 'I build layouts quickly and think in components while coding. IDE tooling such as Emmet speeds up HTML. I add semantic markup and SEO-friendly attributes from the start.';
+        $skills__text_2 = 'I write CSS with the same fluency, using Emmet where it helps. Mobile-first keeps the codebase lean and the structure clear. Preprocessors organize components. I use SVG in CSS when it fits, flexbox and grid for layout, and animations where they support UX. Layouts scale from phones to large desktop screens.';
+        $skills__text_3 = 'Solid JavaScript fundamentals: types, control flow, functions, objects, DOM APIs, events. Async patterns: callbacks, Promises, async/await. Experience with jQuery and Vue. HTTP requests and REST-style APIs. Git and the command line in daily work.';
+        $skills__text_4 = 'Vue components, templates, and directives. Reactive data, computed properties, forms. Data from APIs via axios or similar. Vue Router for client-side navigation.';
+        $skills__text_5 = 'Comfortable reading designs in Photoshop, Zeplin, and Figma. I can produce simple prototypes and UI assets when needed, with attention to UX and visual consistency.';
         $skills__text_6 = 'I know PHP at an average level. Experience in a team with Backend developers and designers. Confident work through Git';
+
+        $meta_description = 'Frontend developer Pavel Solntsev: responsive layout, JavaScript, Vue/Nuxt, commercial experience.';
+        $og_description = 'Frontend development, HTML/CSS, JavaScript, Vue. Portfolio and contacts.';
+        $portfolio_img_alt_prefix = 'Project screenshot: ';
+        $popup_diplom_alt = 'MAI diploma — computer science and engineering';
+
+        $skills__name = 'Also';
+        $skills__li_1 = 'Code review and attention to detail in markup';
+        $skills__li_2 = 'Working from Figma, Zeplin, and Photoshop designs';
+        $skills__li_3 = 'Estimates and task breakdown';
+        $skills__li_4 = 'Collaboration with backend, designers, and PMs';
+        $skills__li_5 = 'Git: branches, merges, typical team workflow';
+        $skills__li_6 = 'Frontend tooling (Gulp; Webpack/Vite on projects)';
+        $skills__li_7 = 'Handoff documentation for development';
+        $skills__li_8 = 'English for docs and async communication';
+
+        $footer_name = 'Pavel Solntsev';
 
         $title_inside = 'Portfolio';
 

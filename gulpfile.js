@@ -26,9 +26,9 @@ const fs = require('fs');
 /* Переменные окружения */
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV !== 'production';
 
-/* Конфиг */
+/* Конфиг: в разработке сборка в .dev/public (не трогает public/ для деплоя). Прод: NODE_ENV=production → public/ */
 var CONFIG = {
-	output: 'public',
+	output: isDevelopment ? '.dev/public' : 'public',
 	input: '.distr/',
 	pages: '.distr/pages',
 	templates: '.distr/templates',
