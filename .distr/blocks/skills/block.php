@@ -16,22 +16,5 @@
 		<div class="skills__text">{{item.desc | safe}}</div>
 	</div>
 	{% endfor %}
-	<div class="skills__item _irl">
-		<div class="skills__graph">
-			<h3 class="skills__name loving-title _h3"><?= $skills__name?></h3>
-		</div>
-		<div class="skills__text">
-			<ul class="skills__ul">
-				<li class="skills__li"><?= $skills__li_1?></li>
-				<li class="skills__li"><?= $skills__li_2?></li>
-				<li class="skills__li"><?= $skills__li_3?></li>
-				<li class="skills__li"><?= $skills__li_4?></li>
-				<li class="skills__li"><?= $skills__li_5?></li>
-				<li class="skills__li"><?= $skills__li_6?></li>
-				<li class="skills__li"><?= $skills__li_7?></li>
-				<li class="skills__li"><?= $skills__li_8?></li>
-			</ul>
-		</div>
-	</div>
 </section>
 

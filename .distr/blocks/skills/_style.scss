@@ -126,24 +126,4 @@
 		color: #ffffff;
 		white-space: nowrap;
 	}
-
-	.skills__ul {
-		list-style: none;
-		padding: 0;
-	}
-
-	.skills__li {
-		padding-left: 2rem;
-		position: relative;
-	}
-
-	.skills__li:before {
-		position: absolute;
-		left: 0;
-		content: '\2713';
-	}
-
-	.skills__li+.skills__li {
-		margin-top: .5em;
-	}
 }
