@@ -1,0 +1,107 @@
+/* head */
+@media all {
+	.head {
+			background: #393A3C;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: row;
+			flex-direction: row;
+			width: 100%;
+			max-width: 106rem;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 1rem;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			-webkit-box-shadow: 50vw 0 0 0 #393A3C, -50vw 0 0 0 #393A3C;
+			box-shadow: 50vw 0 0 0 #393A3C, -50vw 0 0 0 #393A3C;
+			margin-bottom: -1rem;
+			z-index: 10;
+	}
+	@media (min-width: 360px) {
+			.head {
+					padding: 1.6rem 2rem;
+					margin-bottom: -1.6rem;
+			}
+	}
+	@media (min-width: 768px) {
+			.head {
+					position: fixed;
+					top: 0;
+					left: 50%;
+					-webkit-transform: translateX(-50%);
+					-ms-transform: translateX(-50%);
+					transform: translateX(-50%);
+					padding: 2rem 3rem;
+			}
+			.head:before {
+					content: '';
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 2px;
+					background: #555;
+					-webkit-box-shadow: 50vw 0 0 0 #555, -50vw 0 0 0 #555;
+					box-shadow: 50vw 0 0 0 #555, -50vw 0 0 0 #555;
+			}
+	}
+	@media (min-width: 1200px) {
+			.head {
+					padding: 2rem;
+					max-width: 112rem;
+			}
+	}
+
+	.head__title.loving-title {
+			color: #fff;
+	}
+
+	.head__langs {
+			display: flex;
+			color: #646C70;
+			white-space: nowrap;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+	}
+	.head__lang {
+			font-size: 1.4rem;
+			font-weight: bold;
+			color: #646C70;
+			text-decoration: none;
+			
+	}
+	.head__lang:not(:last-child):after {
+			content: '/';
+			color: #646C70;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			pointer-events: none;
+			cursor: default;
+			margin: 0 .2rem;
+	}
+	@media (min-width: 1000px) {
+			.head__lang {
+					-webkit-transition: color .2s;
+					-o-transition: color .2s;
+					transition: color .2s;
+					cursor: pointer;
+			}
+			.head__lang:hover {
+					color: #E0E0E0;
+			}
+	}
+	.head__lang._current {
+			color: #03A9F4;
+			cursor: default;
+			pointer-events: none;
+	}
+}

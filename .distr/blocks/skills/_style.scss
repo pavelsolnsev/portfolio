@@ -1,0 +1,149 @@
+/* skills */
+@media all {
+	.skills__item+.skills__item {
+		margin-top: 3rem;
+	}
+
+	@media (min-width: 768px) {
+		.skills__item+.skills__item {
+			margin-top: 4rem;
+		}
+	}
+
+	@media (min-width: 1000px) {
+		.skills__item+.skills__item {
+			margin-top: 6rem;
+		}
+	}
+
+	.skills__line {
+		height: 2rem;
+		position: relative;
+		margin-bottom: 1rem;
+		max-width: 70rem;
+		background: #424242;
+		border-radius: .8rem;
+	}
+
+	@media (min-width: 768px) {
+		.skills__line {
+			margin-bottom: 2rem;
+		}
+	}
+
+	.skills__line span {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		border-radius: .8rem;
+	}
+
+	._html .skills__line span {
+		background: #E44D26;
+		width: 100%;
+	}
+
+	._css .skills__line span {
+		background: #379AD6;
+		width: 100%;
+	}
+
+	._js .skills__line span {
+		background: #F7E01D;
+		width: 50%;
+	}
+
+	._design .skills__line span {
+		background: #E91E63;
+		width: 80%;
+	}
+
+	.skills__value {
+		font-size: 1.4rem;
+		text-align: right;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		font-weight: 900;
+		color: #fff;
+		padding: 0 .5rem;
+		border-radius: .8rem;
+	}
+
+	._js .skills__value {
+		right: 50%;
+	}
+
+	._design .skills__value {
+		right: 20%;
+	}
+
+	.skills__tags {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		max-width: 70rem;
+		margin-bottom: 1rem;
+		cursor: default;
+	}
+
+	@media (min-width: 768px) {
+		.skills__tags {
+			margin-bottom: 2rem;
+		}
+	}
+
+	.skills__tag {
+		font-size: 1.2rem;
+		line-height: 2rem;
+		margin: 0 .4rem .4rem 0;
+		border-radius: .2rem;
+		background: #BABABA;
+		padding: 0 .5rem;
+		color: #2b2b2b;
+	}
+
+	@media (min-width: 768px) {
+		.skills__tag {
+			font-size: 1.6rem;
+			line-height: 2.4rem;
+		}
+	}
+
+	.skills__text {
+		max-width: 80rem;
+		font-size: 1.4rem;
+		line-height: 2rem;
+	}
+
+	.skills__bold {
+		font-weight: 900;
+		color: #ffffff;
+		white-space: nowrap;
+	}
+
+	.skills__ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.skills__li {
+		padding-left: 2rem;
+		position: relative;
+	}
+
+	.skills__li:before {
+		position: absolute;
+		left: 0;
+		content: '\2713';
+	}
+
+	.skills__li+.skills__li {
+		margin-top: .5em;
+	}
+}

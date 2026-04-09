@@ -1,0 +1,60 @@
+/* base */
+.fancybox-slide--html .fancybox-close-small {
+	color: #000;
+	padding: 5px;
+	border: solid 1px;
+}
+@media all {
+	html {
+			font-size: 10px;
+			background: #2b2b2b;
+	}
+	@media (min-width: 1600px){
+			html {
+					font-size: 12px;
+			}
+	}
+	@media (min-width: 2500px){
+			html {
+					font-size: 15px;
+			}
+	}
+	@media (min-width: 3800px){
+			html {
+					font-size: 20px;
+			}
+	}
+
+	body {
+			font: 400 1.4rem/2rem 'JetBrains Mono', sans-serif;
+			min-height: 100vh;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			color: #BABABA;
+	}
+
+	html[lang="ru"] .head__langs a.ru {
+			color: #03A9F4;
+	}
+
+	html[lang="en"] .head__langs a.en {
+			color: #03A9F4;
+	}
+	
+	@media (min-width: 360px) {
+			body {
+					font-size: 1.6rem;
+			}
+	}
+}

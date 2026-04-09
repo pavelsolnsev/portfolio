@@ -1,0 +1,87 @@
+/* foot */
+@media all {
+	.foot {
+			padding: 1rem;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			width: 100%;
+			max-width: 106rem;
+			background: #313335;
+			-webkit-box-shadow: 50vw 0 0 0 #313335, -50vw 0 0 0 #313335;
+			box-shadow: 50vw 0 0 0 #313335, -50vw 0 0 0 #313335;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: row;
+			flex-direction: row;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			color: #bbb;
+			cursor: default;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			position: relative;
+	}
+	@media (min-width: 360px) {
+			.foot {
+					padding: 1.6rem 2rem;
+			}
+	}
+	@media (min-width: 768px) {
+			.foot {
+					padding: 2rem 3rem;
+			}
+	}
+	@media (min-width: 1200px) {
+			.foot {
+					padding: 2rem;
+					max-width: 112rem;
+			}
+	}
+	.foot:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: #555;
+			-webkit-box-shadow: 50vw 0 0 0 #555, -50vw 0 0 0 #555;
+			box-shadow: 50vw 0 0 0 #555, -50vw 0 0 0 #555;
+	}
+	@media (min-width: 768px) {
+			.foot:before {
+					height: 2px;
+			}
+	}
+	.foot__item {
+			display: flex;
+			align-items: center;
+	}
+	.foot__heart {
+			animation: heart 1s linear 0s infinite;
+			margin-right: 1rem;
+			transition: animation-duration .2s, color .2s, filter .2s;
+	}
+	.foot__heart:hover {
+			animation-duration: .3s;
+			animation-name: heartGo;
+			filter: drop-shadow(0 0 .3rem red);
+			color: red;
+			cursor: none;
+	}
+	@keyframes heart {
+			50% {transform: scale(1.4);}
+	}
+	@keyframes heartGo {
+			50% {transform: scale(2);}
+	}
+}
