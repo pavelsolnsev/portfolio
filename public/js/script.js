@@ -1,5 +1,4 @@
 "use strict";
-
 $(function () {
   $("[data-target]").on("click", function (e) {
     var obj = $(this),
