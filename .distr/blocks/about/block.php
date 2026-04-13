@@ -24,7 +24,7 @@
 		</dl>
 		<dl class="education__dl">
 			<dt class="education__dt">wayup.in</dt>
-			<dd class="education__dd"><a target="_blank" rel="noopener noreferrer" href="https://lab.pavelsolnsev.ru/wayup/Pavel_Solntsev_Alexandrovich.pdf"><?= $education__dd_2?></a></dd>
+			<dd class="education__dd"><a target="_blank" rel="noopener noreferrer" href="https://lab.pavelsolntsev.ru/wayup/Pavel_Solntsev_Alexandrovich.pdf"><?= $education__dd_2?></a></dd>
 		</dl>
 		<dl class="education__dl">
 			<dt class="education__dt">loftschool.com</dt>
