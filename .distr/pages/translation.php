@@ -25,15 +25,14 @@ $education__dt_1 = 'Московский авиационный институт
 $education__dt_2 = 'Опыт работы более 6 лет';
 
 $education__dd_1 = 'Информатика и вычислительная техника';
-$education__dd_2 = 'Веб-Верстальщик: Код Фрилансера';
 $education__dd_3 = 'Веб-разработка';
 $education__dd_4 = 'Имею опыт работы в команде с backend разработчиками,<br> менеджерами, заказчиками, дизайнерами';
 
 $skills__title = 'Навыки';
 
 $skills__text_1 = 'Семантическая вёрстка и шаблоны: Nunjucks/PHP для лендингов и порталов, Vue SFC в SPA и Nuxt. Адаптив, базовый SEO, Emmet и быстрый набор разметки. Опыт в связке с дизайн-системами Quasar и Element&nbsp;Plus.';
-$skills__text_2 = 'SCSS&nbsp;&mdash; основной препроцессор в Quasar, Nuxt и в классической сборке на Gulp (в&nbsp;т.&nbsp;ч. synergy/edu). В Nuxt&nbsp;3-проектах работаю с Tailwind&nbsp;CSS. Mobile-first, flexbox и grid, анимации, SVG. На коммерческих проектах подключал Stylelint и единые правила стилей.';
-$skills__text_3 = 'JavaScript ES6+ в продакшене: модули, асинхронность (Promise, async/await), интеграция с REST. TypeScript&nbsp;&mdash; там, где он принят в команде (Nuxt&nbsp;3, тесты). Сборка: Vite внутри Nuxt, Webpack в Quasar, Gulp для статики. Node.js: боты на Telegraf и серверный код в Nuxt. Тесты: Vitest или Jest по проекту. ESLint, Prettier, husky и lint-staged.';
+$skills__text_2 = 'SCSS&nbsp;&mdash; основной препроцессор в Quasar, Nuxt и в классической сборке на Gulp (в&nbsp;т.&nbsp;ч. synergy/edu). В Nuxt&nbsp;3-проектах работаю с Tailwind&nbsp;CSS. Mobile-first, flexbox и grid, анимации, SVG. На коммерческих проектах подключал единые правила стилей.';
+$skills__text_3 = 'JavaScript ES6+ в продакшене: модули, асинхронность (Promise, async/await), интеграция с REST. TypeScript&nbsp;&mdash; там, где он принят в команде (Nuxt&nbsp;3, тесты). Сборка: Vite внутри Nuxt, Webpack в Quasar, Gulp для статики. Node.js: боты на Telegraf и серверный код в Nuxt. Тесты: Vitest или Jest по проекту. Prettier, husky и lint-staged.';
 $skills__text_4 = 'Vue&nbsp;3 в продакшене: SPA на Quasar (Pinia, Vue Router, axios) и несколько приложений на Nuxt&nbsp;3&nbsp;&mdash; Element&nbsp;Plus, TanStack Vue Query, Pinia, VueUse, @nuxt/image, Swiper, типовые Nuxt-модули. Composition API, формы, работа с API, SEO и производительность на уровне задач фронтенда. Понимание SSR и Nitro для типовых сценариев.';
 $skills__text_5 = 'Читаю макеты в Figma, Zeplin и Photoshop, переношу их в код с учётом UI-библиотек и утилитарных стилей. Предлагаю правки по UX, когда это ускоряет продукт или упрощает вёрстку.';
 $skills__text_6 = 'PHP и стек Gulp&nbsp;+ Nunjucks для лендингов и порталов. Node.js: Telegram-бот (Telegraf, mysql2), Nuxt server routes и работа с MySQL в админке (football). Git, code review, commitlint. По CMS: WordPress, MODX, Bitrix24. На части Nuxt-проектов сталкивался с Redis (кэш, сервер).';
@@ -71,15 +70,14 @@ switch ($lang) {
         $education__dt_2 = 'Work experience more than 6 years';
 
         $education__dd_1 = 'Computer science and computing technique';
-        $education__dd_2 = 'Web layout course: Freelancer Code (WayUp)';
         $education__dd_3 = 'Web development';
         $education__dd_4 = 'I have experience in a team with Backend developers, <br> managers, customers, designers';
         
         $skills__title = 'Skills';
 
         $skills__text_1 = 'Semantic markup and templates: Nunjucks/PHP for landings and portals, Vue SFCs in SPAs and Nuxt. Responsive layouts, baseline SEO, Emmet. Day-to-day work with Quasar and Element&nbsp;Plus design systems.';
-        $skills__text_2 = 'SCSS is my main preprocessor in Quasar, Nuxt, and classic Gulp stacks (including synergy/edu). On Nuxt&nbsp;3 projects I use Tailwind&nbsp;CSS. Mobile-first, flexbox and grid, motion, SVG. Stylelint and shared style rules on team projects.';
-        $skills__text_3 = 'JavaScript ES6+ in production: modules, async/await, REST integration. TypeScript where the team standardises it (Nuxt&nbsp;3, tests). Tooling: Vite (Nuxt), Webpack (Quasar), Gulp for static sites. Node.js: Telegraf bots and Nuxt server code. Tests with Vitest or Jest. ESLint, Prettier, husky, lint-staged.';
+        $skills__text_2 = 'SCSS is my main preprocessor in Quasar, Nuxt, and classic Gulp stacks (including synergy/edu). On Nuxt&nbsp;3 projects I use Tailwind&nbsp;CSS. Mobile-first, flexbox and grid, motion, SVG. Shared style rules on team projects.';
+        $skills__text_3 = 'JavaScript ES6+ in production: modules, async/await, REST integration. TypeScript where the team standardises it (Nuxt&nbsp;3, tests). Tooling: Vite (Nuxt), Webpack (Quasar), Gulp for static sites. Node.js: Telegraf bots and Nuxt server code. Tests with Vitest or Jest. Prettier, husky, lint-staged.';
         $skills__text_4 = 'Vue&nbsp;3 in production: Quasar SPAs (Pinia, Vue Router, axios) and multiple Nuxt&nbsp;3 apps with Element&nbsp;Plus, TanStack Vue Query, Pinia, VueUse, @nuxt/image, Swiper, common Nuxt modules. Composition API, forms, APIs, SEO and performance work on the frontend side. Practical SSR/Nitro knowledge for typical tasks.';
         $skills__text_5 = 'I implement designs from Figma, Zeplin, and Photoshop with UI libraries and utility CSS. I suggest UX tweaks when they simplify shipping or markup.';
         $skills__text_6 = 'PHP and Gulp&nbsp;+ Nunjucks for landings and portals. Node.js: Telegram bot (Telegraf, mysql2), Nuxt server routes, MySQL-backed admin (football). Git, code review, commitlint. CMS: WordPress, MODX, Bitrix24. Redis on some Nuxt stacks for cache/server concerns.';

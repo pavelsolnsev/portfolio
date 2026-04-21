@@ -23,10 +23,6 @@
 			<dd class="education__dd"><a data-fancybox href="#diplom"><?= $education__dd_1 ?></a></dd>
 		</dl>
 		<dl class="education__dl">
-			<dt class="education__dt">wayup.in</dt>
-			<dd class="education__dd"><a target="_blank" rel="noopener noreferrer" href="https://lab.pavelsolntsev.ru/wayup/Pavel_Solntsev_Alexandrovich.pdf"><?= $education__dd_2?></a></dd>
-		</dl>
-		<dl class="education__dl">
 			<dt class="education__dt">loftschool.com</dt>
 			<dd class="education__dd"><a target="_blank" rel="noopener noreferrer" href="https://loftschool.com/diploma/BE38167122518/ru/pdf"><?= $education__dd_3?></a></dd>
 		</dl>
