@@ -23,7 +23,6 @@ $query_string = http_build_query($qs);
 include_once $ROOT . 'translation.php';
 
 $og_origin = 'https://' . ($_SERVER['HTTP_HOST'] ?? 'pavelsolntsev.ru');
-$og_image = $og_origin . '/img/about/pavel.jpg';
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +45,6 @@ $og_image = $og_origin . '/img/about/pavel.jpg';
 	<meta property="og:title" content="<?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?>">
 	<meta property="og:site_name" content="Frontend developer">
 	<meta property="og:description" content="<?= htmlspecialchars($og_description, ENT_QUOTES, 'UTF-8') ?>">
-	<meta property="og:image" content="<?= htmlspecialchars($og_image, ENT_QUOTES, 'UTF-8') ?>">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="<?= htmlspecialchars($og_origin . '/', ENT_QUOTES, 'UTF-8') ?>">
 	<link rel="icon" type="image/svg" href="img/common/favicon.svg">
