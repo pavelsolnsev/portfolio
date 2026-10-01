@@ -25,7 +25,6 @@ $education__dt_1 = 'Московский авиационный институт
 $education__dt_2 = 'Опыт работы более 6 лет';
 
 $education__dd_1 = 'Информатика и вычислительная техника';
-$education__dd_3 = 'Веб-разработка';
 $education__dd_4 = 'Имею опыт работы в команде с backend разработчиками,<br> менеджерами, заказчиками, дизайнерами';
 
 $skills__title = 'Навыки';
@@ -70,7 +69,6 @@ switch ($lang) {
         $education__dt_2 = 'Work experience more than 6 years';
 
         $education__dd_1 = 'Computer science and computing technique';
-        $education__dd_3 = 'Web development';
         $education__dd_4 = 'I have experience in a team with Backend developers, <br> managers, customers, designers';
         
         $skills__title = 'Skills';
