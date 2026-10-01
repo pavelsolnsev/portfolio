@@ -29,12 +29,12 @@ $education__dd_4 = 'Имею опыт работы в команде с backend 
 
 $skills__title = 'Навыки';
 
-$skills__text_1 = 'Семантическая вёрстка и шаблоны: Nunjucks/PHP для лендингов и порталов, Vue SFC в SPA и Nuxt. Адаптив, базовый SEO, Emmet и быстрый набор разметки. Опыт в связке с дизайн-системами Quasar и Element&nbsp;Plus.';
-$skills__text_2 = 'SCSS&nbsp;&mdash; основной препроцессор в Quasar, Nuxt и в классической сборке на Gulp (в&nbsp;т.&nbsp;ч. synergy/edu). В Nuxt&nbsp;3-проектах работаю с Tailwind&nbsp;CSS. Mobile-first, flexbox и grid, анимации, SVG. На коммерческих проектах подключал единые правила стилей.';
-$skills__text_3 = 'JavaScript ES6+ в продакшене: модули, асинхронность (Promise, async/await), интеграция с REST. TypeScript&nbsp;&mdash; там, где он принят в команде (Nuxt&nbsp;3, тесты). Сборка: Vite внутри Nuxt, Webpack в Quasar, Gulp для статики. Node.js: боты на Telegraf и серверный код в Nuxt. Тесты: Vitest или Jest по проекту. Prettier, husky и lint-staged.';
-$skills__text_4 = 'Vue&nbsp;3 в продакшене: SPA на Quasar (Pinia, Vue Router, axios) и несколько приложений на Nuxt&nbsp;3&nbsp;&mdash; Element&nbsp;Plus, TanStack Vue Query, Pinia, VueUse, @nuxt/image, Swiper, типовые Nuxt-модули. Composition API, формы, работа с API, SEO и производительность на уровне задач фронтенда. Понимание SSR и Nitro для типовых сценариев.';
-$skills__text_5 = 'Читаю макеты в Figma, Zeplin и Photoshop, переношу их в код с учётом UI-библиотек и утилитарных стилей. Предлагаю правки по UX, когда это ускоряет продукт или упрощает вёрстку.';
-$skills__text_6 = 'PHP и стек Gulp&nbsp;+ Nunjucks для лендингов и порталов. Node.js: Telegram-бот (Telegraf, mysql2), Nuxt server routes и работа с MySQL в админке (football). Git, code review, commitlint. По CMS: WordPress, MODX, Bitrix24. На части Nuxt-проектов сталкивался с Redis (кэш, сервер).';
+$skills__text_1 = 'Семантическая и доступная вёрстка по макетам Figma: БЭМ, адаптив, кросс-браузерность, SEO-разметка. Vue SFC в Nuxt и SPA, пиксель-перфект.';
+$skills__text_2 = 'SCSS и БЭМ как основа, Tailwind CSS в Nuxt-проектах. Mobile-first, flexbox и grid, анимации, SVG. Работа с UI-библиотеками Quasar и Element&nbsp;Plus.';
+$skills__text_3 = 'JavaScript ES6+ и TypeScript в продакшене: асинхронность, интеграция с REST API по Swagger/OpenAPI, Axios. Сборка на Vite и Webpack, ESLint и Prettier.';
+$skills__text_4 = 'Vue&nbsp;2 и Vue&nbsp;3, Nuxt&nbsp;2&nbsp;/&nbsp;3&nbsp;/&nbsp;4: более 6&nbsp;лет в продакшене. Composition API, Pinia и Vuex, Vue Router, TanStack Query, формы (Zod, vee-validate), SSR и PWA. Оптимизация: Lighthouse каталога колледжей вырос с 62 до 87, вес главной страницы снижен с 2,8 до 1,6&nbsp;МБ.';
+$skills__text_5 = 'Unit-тесты компонентов и бизнес-логики: Jest и Vue Test Utils, Vitest и @nuxt/test-utils. Покрытие критичного модуля личного кабинета выросло с 0 до 60%.';
+$skills__text_6 = 'Git, GitLab CI/CD и Docker: сократил время пайплайна с 12 до 5 минут. Code review, Jira, Commitlint и Husky. Работа с макетами в Figma, согласование API-контрактов с бэкендом.';
 
 $footer_name = 'Павел Солнцев';
 
@@ -73,12 +73,12 @@ switch ($lang) {
         
         $skills__title = 'Skills';
 
-        $skills__text_1 = 'Semantic markup and templates: Nunjucks/PHP for landings and portals, Vue SFCs in SPAs and Nuxt. Responsive layouts, baseline SEO, Emmet. Day-to-day work with Quasar and Element&nbsp;Plus design systems.';
-        $skills__text_2 = 'SCSS is my main preprocessor in Quasar, Nuxt, and classic Gulp stacks (including synergy/edu). On Nuxt&nbsp;3 projects I use Tailwind&nbsp;CSS. Mobile-first, flexbox and grid, motion, SVG. Shared style rules on team projects.';
-        $skills__text_3 = 'JavaScript ES6+ in production: modules, async/await, REST integration. TypeScript where the team standardises it (Nuxt&nbsp;3, tests). Tooling: Vite (Nuxt), Webpack (Quasar), Gulp for static sites. Node.js: Telegraf bots and Nuxt server code. Tests with Vitest or Jest. Prettier, husky, lint-staged.';
-        $skills__text_4 = 'Vue&nbsp;3 in production: Quasar SPAs (Pinia, Vue Router, axios) and multiple Nuxt&nbsp;3 apps with Element&nbsp;Plus, TanStack Vue Query, Pinia, VueUse, @nuxt/image, Swiper, common Nuxt modules. Composition API, forms, APIs, SEO and performance work on the frontend side. Practical SSR/Nitro knowledge for typical tasks.';
-        $skills__text_5 = 'I implement designs from Figma, Zeplin, and Photoshop with UI libraries and utility CSS. I suggest UX tweaks when they simplify shipping or markup.';
-        $skills__text_6 = 'PHP and Gulp&nbsp;+ Nunjucks for landings and portals. Node.js: Telegram bot (Telegraf, mysql2), Nuxt server routes, MySQL-backed admin (football). Git, code review, commitlint. CMS: WordPress, MODX, Bitrix24. Redis on some Nuxt stacks for cache/server concerns.';
+        $skills__text_1 = 'Semantic, accessible layouts from Figma designs: BEM, responsive, cross-browser, SEO markup. Vue SFCs in Nuxt and SPAs, pixel-perfect.';
+        $skills__text_2 = 'SCSS and BEM as the foundation, Tailwind CSS in Nuxt projects. Mobile-first, flexbox and grid, animation, SVG. Quasar and Element&nbsp;Plus UI libraries.';
+        $skills__text_3 = 'JavaScript ES6+ and TypeScript in production: async code, REST API integration via Swagger/OpenAPI, Axios. Vite and Webpack builds, ESLint and Prettier.';
+        $skills__text_4 = 'Vue&nbsp;2 and Vue&nbsp;3, Nuxt&nbsp;2&nbsp;/&nbsp;3&nbsp;/&nbsp;4: 6+ years in production. Composition API, Pinia and Vuex, Vue Router, TanStack Query, forms (Zod, vee-validate), SSR and PWA. Performance: catalog Lighthouse score up from 62 to 87, homepage weight cut from 2.8 to 1.6&nbsp;MB.';
+        $skills__text_5 = 'Unit tests for components and business logic: Jest and Vue Test Utils, Vitest and @nuxt/test-utils. Coverage of a critical account module up from 0 to 60%.';
+        $skills__text_6 = 'Git, GitLab CI/CD and Docker: cut pipeline time from 12 to 5 minutes. Code review, Jira, Commitlint and Husky. Working from Figma designs, agreeing API contracts with backend.';
 
         $meta_description = 'Frontend developer Pavel Solntsev: responsive layout, JavaScript, Vue/Nuxt, commercial experience.';
         $og_description = 'Frontend development, HTML/CSS, JavaScript, Vue. Portfolio and contacts.';
